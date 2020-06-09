@@ -40,5 +40,27 @@ public class Main {
 
 
          */
+        HospitalQueue hospitalQueue = new HospitalQueue();
+
+        Patient pacjentMain = new Patient("marcin","zielinski",4,"kaszel");
+        hospitalQueue.add(pacjentMain);
+
+        System.out.println(hospitalQueue.toString());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
