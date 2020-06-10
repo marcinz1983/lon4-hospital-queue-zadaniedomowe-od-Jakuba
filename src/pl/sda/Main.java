@@ -45,6 +45,7 @@ public class Main {
         Patient pacjentMain1 = new Patient("marcin","zielinski",4,"kaszel");
         Patient pacjentMain2 = new Patient("pawel","zielinski",4,"kaszel");
         Patient pacjentMain3 = new Patient("asia","zielinski",4,"kaszel");
+        Patient pacjentMain4 = new Patient("karol","zielinski",4,"kaszel");
         hospitalQueue.addPatient(pacjentMain1);
         hospitalQueue.addPatient(pacjentMain2);
         hospitalQueue.addPatient(pacjentMain3);
@@ -54,7 +55,12 @@ public class Main {
 
         System.out.println("ostatni pacjent to : "+ hospitalQueue.getLastPatientQueue());
 
-
+        System.out.println("metoda patientNext " + hospitalQueue.patientNext());
+        System.out.println();
+        //hospitalQueue.addPatient(pacjentMain4);
+        System.out.println(" lista oczekujacych w kolejce : "+ hospitalQueue.toString());
+        System.out.println();
+        System.out.println("pacjent peek "+ hospitalQueue.patientPeek());
 
 
 

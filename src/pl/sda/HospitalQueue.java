@@ -53,7 +53,17 @@ public class HospitalQueue {
         counter++;
     }
 
-   /* public Patient patientNext(){
+    public Patient patientNext(){
+        Patient nextPatient = patientQueue[counter-1];
+        //System.arraycopy(patientQueue,0,patientQueue,0,counter-1);
+        patientQueue = Arrays.copyOf(patientQueue,counter-1);
+        patientQueue = Arrays.copyOf(patientQueue,20);
+        counter--;
+        return nextPatient;
 
-    }*/
+    }
+
+    public Patient patientPeek(){
+        return patientQueue[counter-1];
+    }
 }
