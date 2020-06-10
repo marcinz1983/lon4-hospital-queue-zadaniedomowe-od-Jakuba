@@ -17,10 +17,17 @@ public class HospitalQueue {
         this.patientQueue = patientQueue;
     }
 
-    public HospitalQueue(){
+    public HospitalQueue() {
 
     }
 
+    public int getCounter() {
+        return counter;
+    }
+
+    public Patient getLastPatientQueue(){
+        return patientQueue[counter-1];
+    }
 
 
     public Patient[] getPatientQueue() {
@@ -39,12 +46,14 @@ public class HospitalQueue {
     }
 
     public void addPatient(Patient pacjent) {
-
-        this.patientQueue[counter] = pacjent;
-        for(int i = counter; i<19;  i++){
-            patientQueue[i+1] = patientQueue[i];
-
+        for (int i = (patientQueue.length - 2); i >= 0; i--) {
+            patientQueue[i + 1] = patientQueue[i];
         }
+        this.patientQueue[0] = pacjent;
         counter++;
     }
+
+   /* public Patient patientNext(){
+
+    }*/
 }

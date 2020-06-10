@@ -50,7 +50,9 @@ public class Main {
         hospitalQueue.addPatient(pacjentMain3);
 
         System.out.println(hospitalQueue.toString());
+        System.out.println();
 
+        System.out.println("ostatni pacjent to : "+ hospitalQueue.getLastPatientQueue());
 
 
 
