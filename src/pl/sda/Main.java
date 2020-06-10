@@ -42,8 +42,12 @@ public class Main {
          */
         HospitalQueue hospitalQueue = new HospitalQueue();
 
-        Patient pacjentMain = new Patient("marcin","zielinski",4,"kaszel");
-        hospitalQueue.add(pacjentMain);
+        Patient pacjentMain1 = new Patient("marcin","zielinski",4,"kaszel");
+        Patient pacjentMain2 = new Patient("pawel","zielinski",4,"kaszel");
+        Patient pacjentMain3 = new Patient("asia","zielinski",4,"kaszel");
+        hospitalQueue.addPatient(pacjentMain1);
+        hospitalQueue.addPatient(pacjentMain2);
+        hospitalQueue.addPatient(pacjentMain3);
 
         System.out.println(hospitalQueue.toString());
 

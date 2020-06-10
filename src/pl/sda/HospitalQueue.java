@@ -11,7 +11,7 @@ public class HospitalQueue {
 
     private Patient[] patientQueue = new Patient[20];
     private int counter;
-    //Patient pacjent = new Patient();
+
 
     public HospitalQueue(Patient[] patientQueue) {
         this.patientQueue = patientQueue;
@@ -38,8 +38,13 @@ public class HospitalQueue {
                 '}';
     }
 
-    public void add(Patient pacjent) {
+    public void addPatient(Patient pacjent) {
+
         this.patientQueue[counter] = pacjent;
+        for(int i = counter; i<19;  i++){
+            patientQueue[i+1] = patientQueue[i];
+
+        }
         counter++;
     }
 }

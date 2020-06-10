@@ -48,4 +48,13 @@ public class Patient {
     }
 
 
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "name='" + name + '\'' +
+                ", Surname='" + Surname + '\'' +
+                ", hawAngry=" + hawAngry +
+                ", illness='" + illness + '\'' +
+                '}';
+    }
 }
