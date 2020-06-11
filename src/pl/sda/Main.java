@@ -1,5 +1,7 @@
 package pl.sda;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -41,6 +43,57 @@ public class Main {
 
          */
         HospitalQueue hospitalQueue = new HospitalQueue();
+    /*    3. W main stwórz menu:
+        a Następny - wywołujące next i wypisujące co zostało z tego next zwrócone
+        b Kto następny - wywołujące peek() i wypisujące kto jest następny
+        c Nowy pacjent - umożliwiające podanie imienia, nazwiska, złości i rozpoznanej choroby, a następnie wrzucające to na kolejkę (te dane pobierz za pomocą Scannera)
+        */
+
+        System.out.println("Witaj w Szpitalu wpisz co chcesz zrobic: jesli wywolac Pacjenta wpisz 'nastepny' \n jesli sprawdzic kto nastepny wpisz 'kto'  jesli nowy pacjent wpisz 'nowy' " );
+        Scanner scanner = new Scanner(System.in);
+        String choice = scanner.nextLine();
+
+        if(choice.equals("nowy")){
+
+            System.out.println("podaj imie pacjenta : ");
+            String name = scanner.nextLine();
+            System.out.println("podaj nazwisko pacjenta : ");
+            String surName = scanner.nextLine();
+            System.out.println("podaj jak bardzo jest zly w skali od 1 do 5  :");
+            String hawAngryIs = scanner.nextLine();
+           // int hawAngryIsInt = hawAngryIs.
+            System.out.println("podaj chorobe pacjenta : ");
+            String illness = scanner.nextLine();
+
+
+
+
+
+        }if(choice.equals("nastepny")){
+            Patient nextOne = hospitalQueue.patientNext();
+            System.out.println(nextOne);
+
+
+
+        }if(choice.equals("kto")){
+            System.out.println(hospitalQueue.patientPeek());
+
+        }else{
+            return;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         Patient pacjentMain1 = new Patient("marcin","zielinski",4,"kaszel");
         Patient pacjentMain2 = new Patient("pawel","zielinski",4,"kaszel");
@@ -61,11 +114,6 @@ public class Main {
         System.out.println(" lista oczekujacych w kolejce : "+ hospitalQueue.toString());
         System.out.println();
         System.out.println("pacjent peek "+ hospitalQueue.patientPeek());
-
-
-
-
-
 
 
 
