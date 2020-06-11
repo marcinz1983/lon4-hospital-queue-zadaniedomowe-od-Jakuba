@@ -1,6 +1,7 @@
 package pl.sda;
 
 import java.util.Arrays;
+import java.util.SortedMap;
 
 public class HospitalQueue {
 //     2. Utwórz klasę HospitalQueue, która
@@ -25,8 +26,8 @@ public class HospitalQueue {
         return counter;
     }
 
-    public Patient getLastPatientQueue(){
-        return patientQueue[counter-1];
+    public Patient getLastPatientQueue() {
+        return patientQueue[counter - 1];
     }
 
 
@@ -53,17 +54,24 @@ public class HospitalQueue {
         counter++;
     }
 
-    public Patient patientNext(){
-        Patient nextPatient = patientQueue[counter-1];
-        //System.arraycopy(patientQueue,0,patientQueue,0,counter-1);
-        patientQueue = Arrays.copyOf(patientQueue,counter-1);
-        patientQueue = Arrays.copyOf(patientQueue,20);
-        counter--;
-        return nextPatient;
-
+    public Patient patientNext() {
+        if (counter > 0) {
+            Patient nextPatient = patientQueue[counter - 1];
+            System.arraycopy(patientQueue, 0, patientQueue, 0, counter - 1);
+//        patientQueue = Arrays.copyOf(patientQueue,counter-1);
+//        patientQueue = Arrays.copyOf(patientQueue,20);
+            counter--;
+            return nextPatient;
+        } else {
+            return patientQueue[0];
+        }
     }
 
-    public Patient patientPeek(){
-        return patientQueue[counter-1];
+    public Patient patientPeek() {
+        if (counter > 0) {
+            return patientQueue[counter - 1];
+        } else {
+            return patientQueue[0];
+        }
     }
 }

@@ -48,57 +48,63 @@ public class Main {
         b Kto następny - wywołujące peek() i wypisujące kto jest następny
         c Nowy pacjent - umożliwiające podanie imienia, nazwiska, złości i rozpoznanej choroby, a następnie wrzucające to na kolejkę (te dane pobierz za pomocą Scannera)
         */
-
-        System.out.println("Witaj w Szpitalu wpisz co chcesz zrobic: jesli wywolac Pacjenta wpisz 'nastepny' \n jesli sprawdzic kto nastepny wpisz 'kto'  jesli nowy pacjent wpisz 'nowy' " );
         Scanner scanner = new Scanner(System.in);
-        String choice = scanner.nextLine();
+        do {
+            System.out.println("Witaj w Szpitalu wpisz co chcesz zrobic: jesli wywolac Pacjenta wpisz 'nastepny' \n jesli sprawdzic kto nastepny wpisz 'kto'  jesli nowy pacjent wpisz 'nowy': \n ");
+            String choice = scanner.nextLine();
 
-        if(choice.equals("nowy")){
-
-            System.out.println("podaj imie pacjenta : ");
-            String name = scanner.nextLine();
-            System.out.println("podaj nazwisko pacjenta : ");
-            String surName = scanner.nextLine();
-            System.out.println("podaj jak bardzo jest zly w skali od 1 do 5  :");
-            String hawAngryIs = scanner.nextLine();
-           // int hawAngryIsInt = hawAngryIs.
-            System.out.println("podaj chorobe pacjenta : ");
-            String illness = scanner.nextLine();
-
-
-
-
-
-        }if(choice.equals("nastepny")){
-            Patient nextOne = hospitalQueue.patientNext();
-            System.out.println(nextOne);
-
+            if (choice.equals("nowy")) {
+                System.out.println("podaj minimum 3 pacjentów");
+                do {
+                    System.out.println("podaj imie pacjenta : ");
+                    String name = scanner.nextLine();
+                    System.out.println("podaj nazwisko pacjenta : ");
+                    String surName = scanner.nextLine();
+                    System.out.println("podaj jak bardzo jest zly w skali od 1 do 5  :");
+                    String hawAngryIs = scanner.nextLine();
+                    int hawAngryIsInt = Integer.parseInt(hawAngryIs);
+                    System.out.println("podaj chorobe pacjenta : ");
+                    String illness = scanner.nextLine();
+                    Patient patient = new Patient(name, surName, hawAngryIsInt, illness);
+                    hospitalQueue.addPatient(patient);
+                    System.out.println("dodac nastepnego pacjenta ? (tak/nie)");
+                } while (scanner.nextLine().equals("tak"));
 
 
-        }if(choice.equals("kto")){
-            System.out.println(hospitalQueue.patientPeek());
-
-        }else{
-            return;
-        }
-
-
-
+            }
+            if (choice.equals("nastepny")) {
+                Patient nextOne = hospitalQueue.patientNext();
+                if(nextOne !=null) {
+                    System.out.println(nextOne);
+                }else {
+                    System.out.println("kolejka jest pusta");
+                }
+            }
 
 
 
+            if (choice.equals("kto")) {
+                if(hospitalQueue.patientPeek() != null) {
+                    System.out.println(hospitalQueue.patientPeek());
+                }else {
+                    System.out.println("kolejka jest pusta");
+                }
+            }
+
+
+
+            System.out.println("Czy chcesz wyjsc ze szpitala: (tak/nie)");
+        } while (scanner.nextLine().equals("nie"));
 
 
 
 
 
 
-
-
-        Patient pacjentMain1 = new Patient("marcin","zielinski",4,"kaszel");
-        Patient pacjentMain2 = new Patient("pawel","zielinski",4,"kaszel");
-        Patient pacjentMain3 = new Patient("asia","zielinski",4,"kaszel");
-        Patient pacjentMain4 = new Patient("karol","zielinski",4,"kaszel");
+        Patient pacjentMain1 = new Patient("marcin", "zielinski", 4, "kaszel");
+        Patient pacjentMain2 = new Patient("pawel", "zielinski", 4, "kaszel");
+        Patient pacjentMain3 = new Patient("asia", "zielinski", 4, "kaszel");
+        Patient pacjentMain4 = new Patient("karol", "zielinski", 4, "kaszel");
         hospitalQueue.addPatient(pacjentMain1);
         hospitalQueue.addPatient(pacjentMain2);
         hospitalQueue.addPatient(pacjentMain3);
@@ -106,20 +112,14 @@ public class Main {
         System.out.println(hospitalQueue.toString());
         System.out.println();
 
-        System.out.println("ostatni pacjent to : "+ hospitalQueue.getLastPatientQueue());
+        System.out.println("ostatni pacjent to : " + hospitalQueue.getLastPatientQueue());
 
         System.out.println("metoda patientNext " + hospitalQueue.patientNext());
         System.out.println();
         //hospitalQueue.addPatient(pacjentMain4);
-        System.out.println(" lista oczekujacych w kolejce : "+ hospitalQueue.toString());
+        System.out.println(" lista oczekujacych w kolejce : " + hospitalQueue.toString());
         System.out.println();
-        System.out.println("pacjent peek "+ hospitalQueue.patientPeek());
-
-
-
-
-
-
+        System.out.println("pacjent peek " + hospitalQueue.patientPeek());
 
 
     }
