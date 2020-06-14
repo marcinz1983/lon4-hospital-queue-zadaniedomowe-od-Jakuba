@@ -11,19 +11,19 @@ public class Patient {
     private  String name;
     private  String Surname;
     private  int hawAngry;
-    private  String illness;
-
+    private  Disease disease;
+Disease aaa = new Disease();
   /*  public Patient(){
 
     }*/
 
 
 
-    public Patient(String name, String surname, int hawAngry, String illness) {
+    public Patient(String name, String surname, int hawAngry, Disease disease) {
         this.name = name;
         Surname = surname;
         this.hawAngry = hawAngry;
-        this.illness = illness;
+        this.disease = disease;
     }
 
 
@@ -39,8 +39,8 @@ public class Patient {
         return hawAngry;
     }
 
-    public String getIllness() {
-        return illness;
+    public Disease getIllness() {
+        return disease;
     }
 
     public void setName(String name) {
@@ -54,7 +54,7 @@ public class Patient {
                 "name='" + name + '\'' +
                 ", Surname='" + Surname + '\'' +
                 ", hawAngry=" + hawAngry +
-                ", illness='" + illness + '\'' +
+                ", illness='" + disease + '\'' +
                 '}';
     }
 }

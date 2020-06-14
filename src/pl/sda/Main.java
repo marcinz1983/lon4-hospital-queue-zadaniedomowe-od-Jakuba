@@ -64,8 +64,10 @@ public class Main {
                     String hawAngryIs = scanner.nextLine();
                     int hawAngryIsInt = Integer.parseInt(hawAngryIs);
                     System.out.println("podaj chorobe pacjenta : ");
-                    String illness = scanner.nextLine();
-                    Patient patient = new Patient(name, surName, hawAngryIsInt, illness);
+                   // String illness = scanner.nextLine();
+                    //Disease disease = new Disease(illness);
+                    Disease disease = new Disease(scanner.nextLine());
+                    Patient patient = new Patient(name, surName, hawAngryIsInt, disease);
                     hospitalQueue.addPatient(patient);
                     System.out.println("dodac nastepnego pacjenta ? (tak/nie)");
                 } while (scanner.nextLine().equals("tak"));
@@ -101,9 +103,9 @@ public class Main {
 
 
 
-        Patient pacjentMain1 = new Patient("marcin", "zielinski", 4, "kaszel");
+       /* Patient pacjentMain1 = new Patient("marcin", "zielinski", 4,"kaszel");
         Patient pacjentMain2 = new Patient("pawel", "zielinski", 4, "kaszel");
-        Patient pacjentMain3 = new Patient("asia", "zielinski", 4, "kaszel");
+        Patient pacjentMain3 = new Patient("asia", "zielinski", 4, "katar");
         Patient pacjentMain4 = new Patient("karol", "zielinski", 4, "kaszel");
         hospitalQueue.addPatient(pacjentMain1);
         hospitalQueue.addPatient(pacjentMain2);
@@ -119,7 +121,7 @@ public class Main {
         //hospitalQueue.addPatient(pacjentMain4);
         System.out.println(" lista oczekujacych w kolejce : " + hospitalQueue.toString());
         System.out.println();
-        System.out.println("pacjent peek " + hospitalQueue.patientPeek());
+        System.out.println("pacjent peek " + hospitalQueue.patientPeek());*/
 
 
     }

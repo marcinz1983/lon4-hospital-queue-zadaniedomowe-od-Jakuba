@@ -63,7 +63,7 @@ public class HospitalQueue {
             counter--;
             return nextPatient;
         } else {
-            return patientQueue[0];
+            return patientQueue[1] = null;
         }
     }
 

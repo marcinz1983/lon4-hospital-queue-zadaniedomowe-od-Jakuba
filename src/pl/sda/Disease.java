@@ -4,7 +4,9 @@ public class Disease {
 
     private String disease;
 
+    public Disease() {
 
+    }
     public Disease(String disease) {
         this.disease = disease;
     }
@@ -17,5 +19,8 @@ public class Disease {
         return disease;
     }
 
-
+    @Override
+    public String toString() {
+        return  disease ;
+    }
 }
