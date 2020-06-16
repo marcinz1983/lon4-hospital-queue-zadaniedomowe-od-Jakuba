@@ -1,6 +1,14 @@
 package pl.sda;
 
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
 
 public class Main {
 
@@ -50,7 +58,8 @@ public class Main {
         */
         Scanner scanner = new Scanner(System.in);
         do {
-            System.out.println("Witaj w Szpitalu wpisz co chcesz zrobic: jesli wywolac Pacjenta wpisz 'nastepny' \n jesli sprawdzic kto nastepny wpisz 'kto'  jesli nowy pacjent wpisz 'nowy': \n ");
+            System.out.println("Witaj w Szpitalu wpisz co chcesz zrobic: jesli wywolac Pacjenta wpisz 'nastepny' \n jesli sprawdzic kto nastepny wpisz 'kto'  " +
+                    "jesli nowy pacjent wpisz 'nowy'  lub jesli chcesz skorzystac z wersji Demo wpisz 'demo' : \n ");
             String choice = scanner.nextLine();
 
             if (choice.equals("nowy")) {
@@ -64,10 +73,11 @@ public class Main {
                     String hawAngryIs = scanner.nextLine();
                     int hawAngryIsInt = Integer.parseInt(hawAngryIs);
                     System.out.println("podaj chorobe pacjenta : ");
-                   // String illness = scanner.nextLine();
+                    // String illness = scanner.nextLine();
                     //Disease disease = new Disease(illness);
                     Disease disease = new Disease(scanner.nextLine());
                     Patient patient = new Patient(name, surName, hawAngryIsInt, disease);
+
                     hospitalQueue.addPatient(patient);
                     System.out.println("dodac nastepnego pacjenta ? (tak/nie)");
                 } while (scanner.nextLine().equals("tak"));
@@ -76,25 +86,82 @@ public class Main {
             }
             if (choice.equals("nastepny")) {
                 Patient nextOne = hospitalQueue.patientNext();
-                if(nextOne !=null) {
+                if (nextOne != null) {
                     System.out.println(nextOne);
-                }else {
+                } else {
                     System.out.println("kolejka jest pusta");
                 }
             }
-
 
 
             if (choice.equals("kto")) {
-                if(hospitalQueue.patientPeek() != null) {
+                if (hospitalQueue.patientPeek() != null) {
                     System.out.println(hospitalQueue.patientPeek());
-                }else {
+                } else {
                     System.out.println("kolejka jest pusta");
                 }
             }
+            if (choice.equals("demo")) {
+                Disease kaszel = new Disease("kaszel");
+                Disease katar = new Disease("katar");
+                Disease covid19 = new Disease("covid19");
+                Disease grypa = new Disease("grypa");
+                Disease ebola = new Disease("ebola");
+                Patient patient1 = new Patient("Marcin", "Ziel", 3, kaszel);
+                Patient patient2 = new Patient("Karol", "Nowak", 3, kaszel);
+                Patient patient3 = new Patient("Kasia", "Kowalski", 3, kaszel);
+                Patient patient4 = new Patient("Lucyna", "Lewandowski", 3, kaszel);
+                Patient patient5 = new Patient("Zdzichu", "Kowalski", 3, kaszel);
+                Patient patient6 = new Patient("Karolina", "Obara", 3, kaszel);
 
+                /*5. Tryb demo:
+                a Co 2 sekundy aplikacja dodaje losową osobę (losujemy imię, nazwisko, chorobę z tablicy, jak bardzo zły - losujemy liczbę)
+                b Co 2 sekundy + random max 1s aplikacja przyjmuje pacjenta
+                6. Zamiast przyjmować pacjentów w kolejności naturalnej przyjmuj ich według priorytetu:
+                a Metoda next powinna zwracać najpierw osoby o nazwisku “Kowalski” (to nazwisko ordynatora),
+                   ** pomyśl w przyszłości o ładowaniu jej z pliku properties za pomocą klasy Properties
+                b w następnej kolejności powinna zwracać osoby z czymś poważnym (nazwa choroby "cos powaznego")
+                c dalej osoby, których iloczyn jakBardzoZly i zaraźliwość będzie wyższy
+*/
 
+                String plus2Seconds = LocalTime.now().plusSeconds(2).toString();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss.nnn");
+                LocalTime timePlus2Seconds = LocalTime.parse(plus2Seconds, formatter).truncatedTo(ChronoUnit.SECONDS);
+                //boolean loop = true;
+                while (!(hospitalQueue.getCounter()>19)) {
+                    Random random = new Random();
+                    if (LocalTime.now().truncatedTo(ChronoUnit.SECONDS).equals(timePlus2Seconds)) {
+                        LocalTime timePlus2SecondsTemp = timePlus2Seconds.plusSeconds(2);
+                        //System.out.println("dziala add ?\n");
 
+                        int patNum = random.nextInt(6);
+                        switch (patNum) {
+                            case 0: hospitalQueue.addPatient(patient1);
+                                System.out.println("Przyjeto pacjenta : "+ patient1);break;
+                            case 1: hospitalQueue.addPatient(patient2);
+                                System.out.println("Przyjeto pacjenta : "+ patient2);break;
+                            case 2: hospitalQueue.addPatient(patient3);
+                                System.out.println("Przyjeto pacjenta : "+ patient3);break;
+                            case 3: hospitalQueue.addPatient(patient4);
+                                System.out.println("Przyjeto pacjenta : "+ patient4);break;
+                            case 4: hospitalQueue.addPatient(patient5);
+                                System.out.println("Przyjeto pacjenta : "+ patient5);break;
+                            case 5: hospitalQueue.addPatient(patient6);
+                                System.out.println("Przyjeto pacjenta : "+ patient6);break;
+
+                        }
+                        if (LocalTime.now().truncatedTo(ChronoUnit.SECONDS).equals(timePlus2Seconds.plusSeconds(random.nextInt(2)))) {
+                            System.out.println("Nastepny Pacjent  : "+ hospitalQueue.patientNext());
+                        }
+                        timePlus2Seconds = timePlus2SecondsTemp;
+                    }
+                }
+
+                System.out.println("Kolejka przekroczyla 20 pacjentów oto Oni  : \n "+hospitalQueue.toString());
+
+            }
+
+            System.out.println();
             System.out.println("Czy chcesz wyjsc ze szpitala: (tak/nie)");
         } while (scanner.nextLine().equals("nie"));
 

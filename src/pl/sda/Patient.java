@@ -12,11 +12,6 @@ public class Patient {
     private  String Surname;
     private  int hawAngry;
     private  Disease disease;
-Disease aaa = new Disease();
-  /*  public Patient(){
-
-    }*/
-
 
 
     public Patient(String name, String surname, int hawAngry, Disease disease) {
@@ -25,7 +20,6 @@ Disease aaa = new Disease();
         this.hawAngry = hawAngry;
         this.disease = disease;
     }
-
 
     public String getName() {
         return name;
@@ -55,6 +49,6 @@ Disease aaa = new Disease();
                 ", Surname='" + Surname + '\'' +
                 ", hawAngry=" + hawAngry +
                 ", illness='" + disease + '\'' +
-                '}';
+                '}'+"\n" ;
     }
 }

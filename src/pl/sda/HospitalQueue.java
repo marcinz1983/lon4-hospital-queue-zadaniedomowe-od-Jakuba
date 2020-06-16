@@ -51,7 +51,12 @@ public class HospitalQueue {
             patientQueue[i + 1] = patientQueue[i];
         }
         this.patientQueue[0] = pacjent;
-        counter++;
+
+        if(counter>19){
+            counter =20;
+        }else {
+            counter++;
+        }
     }
 
     public Patient patientNext() {
